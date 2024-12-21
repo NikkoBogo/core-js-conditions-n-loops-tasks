@@ -133,8 +133,44 @@ function isIsoscelesTriangle(a, b, c) {
  *  10  => X
  *  26  => XXVI
  */
-function convertToRomanNumerals(/* num */) {
-  throw new Error('Not implemented');
+function convertToRomanNumerals(num) {
+  let result = '';
+  const firstDigit = Math.floor(num / 10);
+  const secondDigit = Math.floor(num % 10);
+  let secondRomanDigit = '';
+  if (num < 10) {
+    for (let i = 1; i <= num; i += 1) {
+      result += 'I';
+      if (i === 4) {
+        result = 'IV';
+      } else if (i === 5) {
+        result = 'V';
+      } else if (i === 9) {
+        result = 'IX';
+      }
+    }
+  } else if (num < 40 && num >= 10) {
+    for (let i = 1; i <= firstDigit; i += 1) {
+      result += 'X';
+    }
+    if (secondDigit === 0) {
+      return result;
+    }
+    if (secondDigit !== 0) {
+      for (let i = 1; i <= secondDigit; i += 1) {
+        secondRomanDigit += 'I';
+        if (i === 4) {
+          secondRomanDigit = 'IV';
+        } else if (i === 5) {
+          secondRomanDigit = 'V';
+        } else if (i === 9) {
+          secondRomanDigit = 'IX';
+        }
+      }
+      result += secondRomanDigit;
+    }
+  }
+  return result;
 }
 
 /**
@@ -152,8 +188,58 @@ function convertToRomanNumerals(/* num */) {
  *  '10,5'    => 'one zero point five'
  *  '1950.2'  => 'one nine five zero point two'
  */
-function convertNumberToString(/* numberStr */) {
-  throw new Error('Not implemented');
+function convertNumberToString(numberStr) {
+  let result = '';
+  for (let i = 0; i < numberStr.length; i += 1) {
+    switch (numberStr[i]) {
+      case '.':
+        result += 'point';
+        break;
+      case ',':
+        result += 'point';
+        break;
+      case '-':
+        result += 'minus';
+        break;
+      case '0':
+        result += 'zero';
+        break;
+      case '1':
+        result += 'one';
+        break;
+      case '2':
+        result += 'two';
+        break;
+      case '3':
+        result += 'three';
+        break;
+      case '4':
+        result += 'four';
+        break;
+      case '5':
+        result += 'five';
+        break;
+      case '6':
+        result += 'six';
+        break;
+      case '7':
+        result += 'seven';
+        break;
+      case '8':
+        result += 'eight';
+        break;
+      case '9':
+        result += 'nine';
+        break;
+      default:
+        result = 'no such symbol';
+        break;
+    }
+    if (numberStr.length > 1 && i < numberStr.length - 1) {
+      result += ' ';
+    }
+  }
+  return result;
 }
 
 /**
