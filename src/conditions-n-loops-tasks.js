@@ -21,8 +21,8 @@
  *  0  => true
  *  -5 => false
  */
-function isPositive(/* number */) {
-  throw new Error('Not implemented');
+function isPositive(number) {
+  return number >= 0;
 }
 
 /**
@@ -38,8 +38,16 @@ function isPositive(/* number */) {
  *  -5, 0, 5      => 5
  *  -0.1, 0, 0.2  => 0.2
  */
-function getMaxNumber(/* a, b, c */) {
-  throw new Error('Not implemented');
+function getMaxNumber(a, b, c) {
+  let result;
+  if (a >= b && a >= b) {
+    result = a;
+  } else if (b >= a && b >= c) {
+    result = b;
+  } else if (c >= a && c >= b) {
+    result = c;
+  }
+  return result;
 }
 
 /**
@@ -60,8 +68,21 @@ function getMaxNumber(/* a, b, c */) {
  * {x: 1, y: 1}, {x: 2, y: 8} => false
  * {x: 1, y: 1}, {x: 2, y: 8} => false
  */
-function canQueenCaptureKing(/* queen, king */) {
-  throw new Error('Not implemented');
+function canQueenCaptureKing(queen, king) {
+  if (queen.x === king.x || queen.y === king.y) {
+    return true;
+  }
+  for (let i = 1; i < 8; i += 1) {
+    if (
+      (queen.x + i === king.x && queen.y + i === king.y) ||
+      (queen.x - i === king.x && queen.y - i === king.y) ||
+      (queen.x - i === king.x && queen.y + i === king.y) ||
+      (queen.x + i === king.x && queen.y - i === king.y)
+    ) {
+      return true;
+    }
+  }
+  return false;
 }
 
 /**
@@ -82,8 +103,20 @@ function canQueenCaptureKing(/* queen, king */) {
  *  2, 2, 5   => false
  *  3, 0, 3   => false
  */
-function isIsoscelesTriangle(/* a, b, c */) {
-  throw new Error('Not implemented');
+function isIsoscelesTriangle(a, b, c) {
+  let result;
+  if (a === 0 || b === 0 || c === 0) {
+    result = false;
+  } else if (a === b && a + b > c) {
+    result = true;
+  } else if (a === c && a + c > b) {
+    result = true;
+  } else if (b === c && b + c > a) {
+    result = true;
+  } else {
+    result = false;
+  }
+  return result;
 }
 
 /**
@@ -135,8 +168,17 @@ function convertNumberToString(/* numberStr */) {
  *  '0123210'   => true
  *  'qweqwe'    => false
  */
-function isPalindrome(/* str */) {
-  throw new Error('Not implemented');
+function isPalindrome(str) {
+  let result = '';
+  for (let i = 0; i < str.length; i += 1) {
+    result = str[i] + result;
+  }
+  if (result === str) {
+    result = true;
+  } else {
+    result = false;
+  }
+  return result;
 }
 
 /**
@@ -153,8 +195,15 @@ function isPalindrome(/* str */) {
  *  'qwerty', 'Q'     => -1
  *  'qwerty', 'p'     => -1
  */
-function getIndexOf(/* str, letter */) {
-  throw new Error('Not implemented');
+function getIndexOf(str, letter) {
+  let result;
+  for (let i = 0; i < str.length; i += 1) {
+    if (str[i] === letter) {
+      return i;
+    }
+    result = -1;
+  }
+  return result;
 }
 
 /**
@@ -172,8 +221,15 @@ function getIndexOf(/* str, letter */) {
  *  12345, 0    => false
  *  12345, 6    => false
  */
-function isContainNumber(/* num, digit */) {
-  throw new Error('Not implemented');
+function isContainNumber(num, digit) {
+  let result;
+  for (let i = 1; i < num; i *= 10) {
+    if (Math.floor((num % (10 * i)) / (1 * i)) === digit) {
+      return true;
+    }
+    result = false;
+  }
+  return result;
 }
 
 /**
